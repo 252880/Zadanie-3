@@ -1,36 +1,46 @@
 #ifndef WEKTOR_HH
 #define WEKTOR_HH
 
-#include "rozmiar.h"
 #include <iostream>
+#include"LZesp.hh"
 
-
+template <class T, int ROZMIAR>
 class Wektor {
 
-  double tab[ROZMIAR];
+  T tab[ROZMIAR];
 
 public:
 
   Wektor ();
 
 
-  Wektor(double x, double y, double z);
-  Wektor(double * tab);
+  Wektor( T x, T y, T z);
+  Wektor(T * tab);
 
- Wektor operator + (const  Wektor & W1) const;
- Wektor  operator - (const Wektor & W1)const;
- double operator * (const Wektor & W1)const;
- Wektor  operator * (double li)const;
+  Wektor<T,ROZMIAR> operator + (const  Wektor<T,ROZMIAR> & W1) const;
+  Wektor<T,ROZMIAR>  operator - (const Wektor<T,ROZMIAR> & W1)const;
+  T operator * (const Wektor<T,ROZMIAR> & W1)const;
+  Wektor<T,ROZMIAR>  operator *  (T li)const;
 
-double dlugosc() const;
+  double dlugosc() const; 
 
-const double & operator [] (int index) const;
- double & operator [] (int index);
+
+
+  const T & operator [] (int index) const;
+  T & operator [] (int index);
 
   
 };
 
-  std::istream& operator >> (std::istream &strm, Wektor &W1);
-  std::ostream& operator << (std::ostream &strm, const Wektor &W1); 
+
+  template <class T, int ROZMIAR>
+  std::istream& operator >> (std::istream &strm, Wektor<T,ROZMIAR> &W1);
+
+
+  template <class T, int ROZMIAR>
+  std::ostream& operator << (std::ostream &strm, const Wektor<T,ROZMIAR> &W1); 
+
+template<>
+double Wektor<LZesp,5>::dlugosc() const;
 
 #endif

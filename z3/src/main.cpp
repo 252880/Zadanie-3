@@ -1,7 +1,5 @@
 #include <iostream>
 #include "Wektor.hh"
-#include "Macierz.hh"
-#include "UkladRownanLiniowych.hh"
  
 using namespace std;
 
@@ -16,14 +14,14 @@ int main()
 {
 
 
-  UkladRownanL W;
+  
 
   cout << endl << " Start programu " << endl << endl;
 
-  
-  std::cin >> W;
 
-  std::cout<<W;
+  Wektor<double,5> A;
+  std::cin>>A;
+
   
   cout << endl << "Koniec programu " << endl << endl ;
       }
