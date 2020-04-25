@@ -14,8 +14,7 @@ public:
   Wektor ();
 
 
-  Wektor( T x, T y, T z);
-  Wektor(T * tab);
+  Wektor(T *tab);
 
   Wektor<T,ROZMIAR> operator + (const  Wektor<T,ROZMIAR> & W1) const;
   Wektor<T,ROZMIAR>  operator - (const Wektor<T,ROZMIAR> & W1)const;
@@ -28,6 +27,9 @@ public:
 
   const T & operator [] (int index) const;
   T & operator [] (int index);
+
+  
+
 
   
 };

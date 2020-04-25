@@ -11,29 +11,19 @@ Wektor<T,ROZMIAR>::Wektor()                           // ustawienie wszystkich s
 {
 
   for(int x=0;x<ROZMIAR;x++)           
-        this[x]=0;
+    (*this)[x]=0;
 }
  
 
 template<class T, int ROZMIAR>
-Wektor<T,ROZMIAR>::Wektor(T *tab)           // ustawienie odpowiednich skladowych wektora elementami tablicy
+Wektor<T,ROZMIAR>::Wektor(T *ta)           // ustawienie odpowiednich skladowych wektora elementami tablicy
 {
   
   for(int x=0;x<ROZMIAR;x++)           
     (*this)[x]=tab[x];
 }
-/*
-
-template<class T, int ROZMIAR>
-Wektor<T,ROZMIAR>::Wektor(T x,T y,T z)          // konstruktor przyjmujacy 3 argumenty typu double
-{
-  (*this)[0] = x;
-  (*this)[1] = y;
-  (*this)[2] = z;
-}
 
 
-*/
 /* Metody operatorow arytmetycznych */
 
 
@@ -153,7 +143,6 @@ double Wektor<LZesp,5>::dlugosc() const {
   
   return sqrt(s);
 }
- 
 
 
 template<class T , int ROZMIAR>
@@ -168,3 +157,4 @@ double Wektor<T,ROZMIAR>::dlugosc() const{
 
   return i;
 }
+

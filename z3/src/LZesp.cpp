@@ -9,8 +9,6 @@ LZesp::LZesp(){
 
 
 
-
-
 LZesp LZesp::operator + (const LZesp & Z) const {
   LZesp  W;
   W.re = this->re + Z.re;
@@ -60,11 +58,20 @@ LZesp LZesp :: operator /(const LZesp & Z) const {
 
   X=(*this*Z.sprzezenie())/(Z*Z.sprzezenie());
 
-  return X;
-
-
-  
+  return X;  
 }
+
+
+LZesp LZesp :: operator * (double li)const{
+  LZesp X;
+
+  X.re=this->re*li;
+  X.im=this->im*li;
+  return X;
+}
+
+
+
 
 double LZesp :: mnoz() const{
   LZesp x;

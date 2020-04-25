@@ -13,15 +13,15 @@ using namespace std;
 int main()
 {
 
+cout << endl << " Start programu " << endl << endl;
+ 
 
-  
-
-  cout << endl << " Start programu " << endl << endl;
-
-
-  Wektor<double,5> A;
-  std::cin>>A;
-
+  Wektor<double,5> W;
+  Wektor<LZesp,5> X;
+  std::cin>>X;
+  LZesp l;
+  cin>>l;
+  cout<<" " <<X*l;   
   
   cout << endl << "Koniec programu " << endl << endl ;
       }

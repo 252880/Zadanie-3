@@ -13,10 +13,16 @@ struct  LZesp {
 
 
   LZesp();
-  LZesp(double x, double yi) : re(x), im(yi) {};
+  LZesp(double x, double yi) : re(x), im(yi) {} ;
+  explicit LZesp (double l) : re(l) , im(0) {};
 
-  explicit LZesp(double liczba) : re(liczba), im(0) {};
- 
+  LZesp operator=(double liczba) {
+    re=liczba;
+    im=0;
+    return *this;
+  }
+  
+
   LZesp sprzezenie() const;
   
   LZesp operator +  (const LZesp & Z) const;
@@ -24,6 +30,7 @@ struct  LZesp {
   LZesp operator *  (const LZesp & Z) const;
   LZesp operator /  (const LZesp & Z) const;
   LZesp operator += (const LZesp & Z) const;
+  LZesp operator *(double li) const;
   double  mnoz () const;
 
   bool operator ==(const LZesp & Z)const;
