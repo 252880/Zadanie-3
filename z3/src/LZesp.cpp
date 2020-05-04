@@ -7,6 +7,13 @@ LZesp::LZesp(){
   im = 0;
 }
 
+LZesp LZesp::operator = (double l){
+  this->re=l;
+  this->im=0;
+  return *this;
+}
+
+
 
 
 LZesp LZesp::operator + (const LZesp & Z) const {
@@ -36,6 +43,13 @@ LZesp LZesp::operator * (const LZesp & Z) const {
   W.im = (this->re * Z.im) + (this->im * Z.re);
   return W;
 }
+LZesp LZesp::operator * (double l) const{
+  LZesp W;
+  W.re=this->re*l;
+  W.im=this->im*l;
+  return W;
+}
+
 
 bool LZesp::operator == (const LZesp & W) const {
   if (this->re == W.re){
@@ -53,27 +67,25 @@ LZesp LZesp::sprzezenie()const{
   return X;
 }
 
-LZesp LZesp :: operator /(const LZesp & Z) const {
+LZesp LZesp::operator / (const LZesp & Z)const  {
+  double i=0;
   LZesp X;
+  i=(Z.re*Z.re)+(Z.im*Z.im);
 
-  X=(*this*Z.sprzezenie())/(Z*Z.sprzezenie());
-
-  return X;  
+  if(i==0){
+    std::cerr<<"Dzielenie przez zero!!";
+} else
+      {
+	X.re=(this->re*Z.re+this->im*Z.im)/i;
+    X.im=(this->im*Z.re-this->re*Z.im)/i;
 }
-
-
-LZesp LZesp :: operator * (double li)const{
-  LZesp X;
-
-  X.re=this->re*li;
-  X.im=this->im*li;
-  return X;
+return X;
 }
+ 
 
 
 
-
-double LZesp :: mnoz() const{
+double LZesp :: mnoz() const{                      //Lzesp razy sprzezenie zwraca liczbe typu double
   LZesp x;
   x=*this*(*this).sprzezenie();
   

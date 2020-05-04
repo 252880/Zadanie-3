@@ -1,6 +1,9 @@
 #include <iostream>
+#include"LZesp.hh"
 #include "Wektor.hh"
- 
+#include "Macierz.hh" 
+#include "UkladRownanLiniowych.hh"
+
 using namespace std;
 
 /*
@@ -13,15 +16,27 @@ using namespace std;
 int main()
 {
 
-cout << endl << " Start programu " << endl << endl;
- 
+  char a;
+  cin>>a;
 
-  Wektor<double,5> W;
-  Wektor<LZesp,5> X;
-  std::cin>>X;
-  LZesp l;
-  cin>>l;
-  cout<<" " <<X*l;   
-  
-  cout << endl << "Koniec programu " << endl << endl ;
+  switch(a){
+
+  case 'r':
+    {    UkladRownanL<double,5> X;
+   cin>>X;
+    cout<<X;
+    break;
+    }
+    case 'z':
+      { UkladRownanL<LZesp,5> Y;
+    cin>>Y;
+    cout<<Y;
+    break;
       }
+  default:
+    cerr << "Podano zly parametr" << endl;
+    break;
+  }
+  return 0;
+
+}

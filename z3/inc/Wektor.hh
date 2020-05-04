@@ -14,22 +14,22 @@ public:
   Wektor ();
 
 
-  Wektor(T *tab);
+  Wektor(T *Wtab);
 
   Wektor<T,ROZMIAR> operator + (const  Wektor<T,ROZMIAR> & W1) const;
   Wektor<T,ROZMIAR>  operator - (const Wektor<T,ROZMIAR> & W1)const;
   T operator * (const Wektor<T,ROZMIAR> & W1)const;
-  Wektor<T,ROZMIAR>  operator *  (T li)const;
-
+  Wektor<T,ROZMIAR>  operator *  (double li)const;
+  Wektor<T,ROZMIAR> operator * (LZesp li)const;
+  
   double dlugosc() const; 
-
-
+  double abs(int i)const;
 
   const T & operator [] (int index) const;
   T & operator [] (int index);
 
   
-
+  
 
   
 };
@@ -44,5 +44,11 @@ public:
 
 template<>
 double Wektor<LZesp,5>::dlugosc() const;
+
+template<>
+Wektor<LZesp,5> Wektor<LZesp,5> :: operator * (LZesp li) const;
+
+template<>
+double Wektor<LZesp,5>::abs(int i)const; 
 
 #endif

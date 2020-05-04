@@ -1,7 +1,7 @@
 #ifndef LZESPOLONA_HH
 #define LZESPOLONA_HH
 #include <iostream>
-
+#include<cmath>
 
 
 
@@ -13,24 +13,20 @@ struct  LZesp {
 
 
   LZesp();
-  LZesp(double x, double yi) : re(x), im(yi) {} ;
+  LZesp(double x, double yi) : re(x) , im(yi) {} ;
   explicit LZesp (double l) : re(l) , im(0) {};
 
-  LZesp operator=(double liczba) {
-    re=liczba;
-    im=0;
-    return *this;
-  }
-  
+  LZesp operator = (double l);
+      
 
-  LZesp sprzezenie() const;
-  
+  LZesp sprzezenie() const;  
   LZesp operator +  (const LZesp & Z) const;
   LZesp operator -  (const LZesp & Z) const;
   LZesp operator *  (const LZesp & Z) const;
-  LZesp operator /  (const LZesp & Z) const;
+  LZesp operator / (const LZesp & Z) const;
   LZesp operator += (const LZesp & Z) const;
-  LZesp operator *(double li) const;
+  LZesp operator * (double l) const;
+  
   double  mnoz () const;
 
   bool operator ==(const LZesp & Z)const;
@@ -40,5 +36,7 @@ struct  LZesp {
 };
 std::istream & operator >> (std::istream &strm, LZesp & Z);
 std::ostream & operator << (std::ostream &strm, const LZesp & Z);
+  
+
 
 #endif

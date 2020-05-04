@@ -1,7 +1,7 @@
 #include "Wektor.hh"
 #include<iostream>
 #include<cmath>
-#include"LZesp.hh"
+
 
 
 /* Konstruktory */
@@ -11,16 +11,16 @@ Wektor<T,ROZMIAR>::Wektor()                           // ustawienie wszystkich s
 {
 
   for(int x=0;x<ROZMIAR;x++)           
-    (*this)[x]=0;
+    tab[x]=0;
 }
  
 
 template<class T, int ROZMIAR>
-Wektor<T,ROZMIAR>::Wektor(T *ta)           // ustawienie odpowiednich skladowych wektora elementami tablicy
+Wektor<T,ROZMIAR>::Wektor(T *Wtab)           // ustawienie odpowiednich skladowych wektora elementami tablicy
 {
   
   for(int x=0;x<ROZMIAR;x++)           
-    (*this)[x]=tab[x];
+    tab[x]=Wtab[x];
 }
 
 
@@ -29,7 +29,7 @@ Wektor<T,ROZMIAR>::Wektor(T *ta)           // ustawienie odpowiednich skladowych
 
  template<class T, int ROZMIAR>
  Wektor<T,ROZMIAR>  Wektor<T,ROZMIAR> :: operator  + (const Wektor<T,ROZMIAR> & W1) const {               // metoda dodajaca dwa wektory, zwracajaca  wektor               
-   Wektor<T,ROZMIAR> W=0;
+   Wektor<T,ROZMIAR> W;
   for(int x=0;x<ROZMIAR;x++){
     
     W[x]= (*this)[x]+W1[x];
@@ -41,7 +41,7 @@ Wektor<T,ROZMIAR>::Wektor(T *ta)           // ustawienie odpowiednich skladowych
 
  template<class T, int ROZMIAR>
  Wektor<T,ROZMIAR>  Wektor<T,ROZMIAR> :: operator - ( const Wektor<T,ROZMIAR> & W1)const{               // metoda odejmujaca dwa wektory, zwraca wektor
-   Wektor<T,ROZMIAR> W=0;  
+   Wektor<T,ROZMIAR> W;  
   for(int x=0;x<ROZMIAR;x++){
     
     W[x]= (*this)[x]-W1[x];
@@ -53,7 +53,7 @@ Wektor<T,ROZMIAR>::Wektor(T *ta)           // ustawienie odpowiednich skladowych
 
 template<class T, int ROZMIAR>
 T Wektor<T,ROZMIAR> :: operator * (const Wektor<T,ROZMIAR> & W1) const{                     // metoda mnozaca dwa wektory, zwraca wektor
-     T  i;
+  T  i=T(0);
 
    for(int x=0;x<ROZMIAR;x++){
     
@@ -65,8 +65,8 @@ T Wektor<T,ROZMIAR> :: operator * (const Wektor<T,ROZMIAR> & W1) const{         
 
 
 template<class T, int ROZMIAR>
- Wektor<T,ROZMIAR>  Wektor<T,ROZMIAR> :: operator * ( T li)const{                      // metoda mozaca wektor z liczba typu double, zwraca wektor
-  Wektor<T,ROZMIAR> W=0;
+ Wektor<T,ROZMIAR>  Wektor<T,ROZMIAR> :: operator * ( double li)const{                      // metoda mozaca wektor z liczba typu double, zwraca wektor
+  Wektor<T,ROZMIAR> W;
 
  for(int x=0;x<ROZMIAR;x++){
     
@@ -78,6 +78,10 @@ template<class T, int ROZMIAR>
 
 
 
+
+
+
+ 
 /* Metody Getter i Setter */
 
 template<class T, int ROZMIAR>
@@ -132,7 +136,7 @@ std::istream & operator >> (std::istream & strm, Wektor <T,ROZMIAR> & W1){      
 
 
 
-
+ 
 template<>
 double Wektor<LZesp,5>::dlugosc() const {
   double s=0;
@@ -143,6 +147,32 @@ double Wektor<LZesp,5>::dlugosc() const {
   
   return sqrt(s);
 }
+
+ 
+template<>
+Wektor<LZesp,5>  Wektor<LZesp,5> :: operator * ( LZesp li)const{                      // metoda mozaca wektor z liczba typu LZesp, zwraca wektor
+  Wektor<LZesp,5> W;
+
+ for(int x=0;x<5;x++){
+    
+    W[x]= (*this)[x]*li;
+}
+ return W;
+}
+
+
+
+template<>
+double  Wektor<LZesp,5> :: abs(int i)const{                      
+  return std::abs((*this)[i].re)+std::abs((*this)[i].im);
+}
+
+template<class T,int ROZMIAR>
+double  Wektor<T,ROZMIAR> :: abs(int i)const{                      
+  return std::abs((*this)[i]);
+}
+
+
 
 
 template<class T , int ROZMIAR>
@@ -157,4 +187,6 @@ double Wektor<T,ROZMIAR>::dlugosc() const{
 
   return i;
 }
+
+
 
